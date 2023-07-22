@@ -3,5 +3,5 @@ import styled from "styled-components";
 export const LayoutContainer = styled.div`
   display: flex;
   flex-direction: column;
-  background: ${(props) => props.theme["gray-200"]};
+  background: ${(props) => props.theme["gray-100"]};
 `;
