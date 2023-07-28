@@ -5,12 +5,12 @@ import {
   CreditCard,
   Money,
 } from "@phosphor-icons/react";
+import { CartSummary } from "../../components/CartSummary";
 import {
   CartWrapper,
   CartAddress,
   CartAddressForm,
   CartAddressFormHeading,
-  CartSummary,
   CartPaymentMethod,
   PaymentOptions,
   CartAddressFormFirstRow,
@@ -73,10 +73,7 @@ const CartPage = () => {
           </PaymentOptions>
         </CartPaymentMethod>
       </CartAddress>
-      <CartSummary>
-        <h3>Cafés selecionados</h3>
-        <div>conta final</div>
-      </CartSummary>
+      <CartSummary />
     </CartWrapper>
   );
 };

@@ -17,6 +17,7 @@ export const CartAddress = styled.div`
     font-family: "Baloo 2", cursive;
     font-size: 1.5rem;
     line-height: 1.3;
+    margin-bottom: 1rem;
   }
 `;
 
@@ -89,26 +90,6 @@ export const CartAddressFormHeading = styled.span`
       font-size: 0.875rem;
       font-family: "Roboto", sans-serif;
     }
-  }
-`;
-
-export const CartSummary = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  h3 {
-    font-family: "Baloo 2", cursive;
-    font-size: 1.5rem;
-    line-height: 1.3;
-  }
-
-  div {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    padding: 2.5rem;
-    background-color: ${(props) => props.theme["gray-200"]};
-    border-radius: 6px;
   }
 `;
 
