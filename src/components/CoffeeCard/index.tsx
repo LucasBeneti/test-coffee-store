@@ -1,4 +1,6 @@
+import { ChangeEvent, FormEvent, useContext, useState } from "react";
 import { ShoppingCart } from "@phosphor-icons/react";
+import { CartContext } from "../../contexts/CartContext";
 import {
   CoffeeCardWrapper,
   CoffeeImage,
@@ -9,7 +11,17 @@ import {
   CoffeePrice,
 } from "./style";
 import expressoTrad from "../../assets/expresso-trad.png";
+
 export const CoffeeCard = () => {
+  const [coffeeQuantity, setCoffeeQuantity] = useState(0);
+  const { addCoffeeToCart } = useContext(CartContext);
+
+  const handleAddCoffeeToCart = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(`coffee quantity`, coffeeQuantity);
+    addCoffeeToCart(); // TODO set correct parameters to send it to the context store
+    setCoffeeQuantity(0);
+  };
   return (
     <CoffeeCardWrapper>
       <CoffeeImage src={expressoTrad} alt="" />
@@ -25,12 +37,19 @@ export const CoffeeCard = () => {
         <CoffeePrice>
           R$<p>9,90</p>
         </CoffeePrice>
-        <span>
-          <input type="number" />
-          <button>
+        <form onSubmit={handleAddCoffeeToCart}>
+          <input
+            type="number"
+            name="coffeeQuantity"
+            onChange={(e: ChangeEvent<HTMLInputElement>) => {
+              setCoffeeQuantity(Number(e.target.value));
+            }}
+            value={coffeeQuantity}
+          />
+          <button type="submit">
             <ShoppingCart weight="fill" fill="white" />
           </button>
-        </span>
+        </form>
       </CoffeeFooter>
     </CoffeeCardWrapper>
   );

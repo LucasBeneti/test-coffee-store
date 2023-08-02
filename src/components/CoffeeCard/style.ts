@@ -63,7 +63,7 @@ export const CoffeeFooter = styled.div`
   width: 100%;
 
   padding: 0 1.5rem 1.5rem 1.5rem;
-  span {
+  form {
     display: flex;
     gap: 0.5rem;
 
