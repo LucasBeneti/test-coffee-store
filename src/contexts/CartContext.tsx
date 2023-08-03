@@ -1,4 +1,4 @@
-import { createContext, ReactNode } from "react";
+import { useState, createContext, ReactNode } from "react";
 
 interface CartContextType {
   addCoffeeToCart: () => void;
@@ -11,6 +11,8 @@ interface CartContextProps {
 }
 
 export const CartContextProvider = ({ children }: CartContextProps) => {
+  const [orderAddress, setorderAddress] = useState({});
+
   const addCoffeeToCart = () => {
     console.log("adding coffee to cart!!!");
   };

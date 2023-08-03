@@ -65,7 +65,7 @@ export const CartSummary = () => {
               <span>R$ 102,00</span>
             </CartSumRow>
           </CartSum>
-          <SubmitOrder>Confirmar</SubmitOrder>
+          <SubmitOrder type="submit">Confirmar</SubmitOrder>
         </CartFooter>
       </CartContent>
     </CartSummaryWrapper>
