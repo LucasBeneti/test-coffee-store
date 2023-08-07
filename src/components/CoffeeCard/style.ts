@@ -101,6 +101,7 @@ export const CoffeePrice = styled.span`
     font-size: 1.5rem;
     font-weight: bolder;
     font-family: "Baloo 2", cursive;
+    margin-left: 0.25rem;
 
     color: ${(props) => props.theme["brown-600"]};
   }

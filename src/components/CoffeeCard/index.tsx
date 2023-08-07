@@ -1,6 +1,6 @@
 import { ChangeEvent, FormEvent, useContext, useState } from "react";
 import { ShoppingCart } from "@phosphor-icons/react";
-import { CartContext } from "../../contexts/CartContext";
+import { CartContext, CoffeeOrder } from "../../contexts/CartContext";
 import {
   CoffeeCardWrapper,
   CoffeeImage,
@@ -12,30 +12,37 @@ import {
 } from "./style";
 import expressoTrad from "../../assets/expresso-trad.png";
 
-export const CoffeeCard = () => {
+export const CoffeeCard = ({ id, name, price }: CoffeeOrder) => {
   const [coffeeQuantity, setCoffeeQuantity] = useState(0);
   const { addCoffeeToCart } = useContext(CartContext);
 
   const handleAddCoffeeToCart = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!coffeeQuantity) return;
+
     console.log(`coffee quantity`, coffeeQuantity);
-    addCoffeeToCart(); // TODO set correct parameters to send it to the context store
-    setCoffeeQuantity(0);
+    const coffeeDTO = {
+      id,
+      name,
+      price,
+      quantity: coffeeQuantity,
+    };
+    addCoffeeToCart(coffeeDTO); // TODO set correct parameters to send it to the context store
   };
   return (
-    <CoffeeCardWrapper>
+    <CoffeeCardWrapper key={id}>
       <CoffeeImage src={expressoTrad} alt="" />
       <CoffeeTags>
         <span>tradicional</span>
         <span>tradicional</span>
       </CoffeeTags>
-      <CoffeeTitle>Expresso Tradicional</CoffeeTitle>
+      <CoffeeTitle>{name}</CoffeeTitle>
       <CoffeeDescription>
         O tradicional café feito com água quente e grãos moídos
       </CoffeeDescription>
       <CoffeeFooter>
         <CoffeePrice>
-          R$<p>9,90</p>
+          R$<p>{price.toFixed(2)}</p>
         </CoffeePrice>
         <form onSubmit={handleAddCoffeeToCart}>
           <input
