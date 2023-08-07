@@ -134,5 +134,15 @@ export const PaymentOptions = styled.div`
     color: ${(props) => props.theme["gray-600"]};
     text-transform: capitalize;
     border-radius: 6px;
+
+    transition: background 300ms ease-in-out;
+
+    &:not(.selected):hover {
+      background: ${(props) => props.theme["brown-200"]};
+    }
+  }
+  .selected {
+    border: 1px solid ${(props) => props.theme["purple-400"]};
+    background: ${(props) => props.theme["purple-100"]};
   }
 `;

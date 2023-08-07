@@ -22,23 +22,31 @@ import {
   CartAddressFormFourthRow,
 } from "./style";
 import { defaultTheme } from "../../styles/theme/default";
+import { useContext } from "react";
+import { CartContext } from "../../contexts/CartContext";
 
 const addressFormValidationSchema = zod.object({
-  zipcode: zod.string(),
-  street: zod.string(),
-  number: zod.string(),
-  complement: zod.string(),
-  neighborhood: zod.string(),
-  city: zod.string(),
-  state: zod.string(),
+  zipcode: zod.string().min(2),
+  street: zod.string().min(2),
+  number: zod.string().min(2),
+  complement: zod.string().min(2),
+  neighborhood: zod.string().min(2),
+  city: zod.string().min(2),
+  state: zod.string().min(2),
 });
 
-type OrderAddressFormData = zod.infer<typeof addressFormValidationSchema>;
+export type OrderAddressFormData = zod.infer<
+  typeof addressFormValidationSchema
+>;
 
 const CartPage = () => {
   const addressForm = useForm<OrderAddressFormData>({
     resolver: zodResolver(addressFormValidationSchema),
+    mode: "onChange",
   });
+
+  const { addOrderAddress, setPaymentOption, paymentOption } =
+    useContext(CartContext);
 
   const { handleSubmit, reset, getValues, formState } = addressForm;
 
@@ -47,14 +55,10 @@ const CartPage = () => {
     reset();
   };
 
-  // TODO check why the form data is not being validated, and if it should be validated at all
   const handleAddressValidation = () => {
-    if (!formState.isValid) {
-      console.log("form still not valid");
-      return;
-    }
-    const currentFormState = getValues();
-    console.log("currentFormState", currentFormState);
+    if (!formState.isValid) return;
+
+    addOrderAddress(getValues());
   };
 
   return (
@@ -85,15 +89,24 @@ const CartPage = () => {
             O pagamento é feito na entrega. Escolha a forma que deseja pagar
           </p>
           <PaymentOptions>
-            <button>
+            <button
+              onClick={() => setPaymentOption("credit")}
+              className={paymentOption === "credit" ? "selected" : ""}
+            >
               <CreditCard size={24} fill={defaultTheme["purple-400"]} />
               Cartão de crédito
             </button>
-            <button>
+            <button
+              onClick={() => setPaymentOption("debit")}
+              className={paymentOption === "debit" ? "selected" : ""}
+            >
               <Bank size={24} fill={defaultTheme["purple-400"]} />
               Cartão de débito
             </button>
-            <button>
+            <button
+              onClick={() => setPaymentOption("money")}
+              className={paymentOption === "money" ? "selected" : ""}
+            >
               <Money size={24} fill={defaultTheme["purple-400"]} />
               Dinheiro
             </button>
@@ -108,9 +121,6 @@ const CartPage = () => {
 export default CartPage;
 
 const AddressFormTest = () => {
-  // had to move this code to a separated component
-  // just because I have to call the useFormContext hook
-  // being inside a component
   const { register } = useFormContext();
   return (
     <>
