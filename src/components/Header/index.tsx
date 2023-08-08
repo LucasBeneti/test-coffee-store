@@ -6,7 +6,9 @@ import logoCoffee from "../../assets/logo.svg";
 export const Header = () => {
   return (
     <HeaderWrapper>
-      <img src={logoCoffee} alt="" />
+      <NavLink to="/">
+        <img src={logoCoffee} alt="" />
+      </NavLink>
       <nav>
         <button>
           <MapPin size={22} weight="fill" />

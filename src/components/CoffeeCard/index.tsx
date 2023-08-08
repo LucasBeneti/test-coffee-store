@@ -1,6 +1,6 @@
 import { ChangeEvent, FormEvent, useContext, useState } from "react";
 import { ShoppingCart } from "@phosphor-icons/react";
-import { CartContext, CoffeeOrder } from "../../contexts/CartContext";
+import { CartContext } from "../../contexts/CartContext";
 import {
   CoffeeCardWrapper,
   CoffeeImage,
@@ -11,8 +11,13 @@ import {
   CoffeePrice,
 } from "./style";
 import expressoTrad from "../../assets/expresso-trad.png";
+interface CoffeeCardProps {
+  id: string;
+  name: string;
+  price: number;
+}
 
-export const CoffeeCard = ({ id, name, price }: CoffeeOrder) => {
+export const CoffeeCard = ({ id, name, price }: CoffeeCardProps) => {
   const [coffeeQuantity, setCoffeeQuantity] = useState(0);
   const { addCoffeeToCart } = useContext(CartContext);
 

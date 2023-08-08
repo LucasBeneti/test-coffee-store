@@ -1,9 +1,12 @@
+import { InputHTMLAttributes } from "react";
 import { QuantityInputButton } from "./style";
 
-interface QuantityInputProps {
+interface QuantityInputProps extends InputHTMLAttributes<HTMLInputElement> {
   name?: string;
 }
 
-export const QuantityInput = ({ name }: QuantityInputProps) => {
-  return <QuantityInputButton type="number" name={name} placeholder="0" />;
+export const QuantityInput = ({ name, ...rest }: QuantityInputProps) => {
+  return (
+    <QuantityInputButton type="number" name={name} placeholder="0" {...rest} />
+  );
 };

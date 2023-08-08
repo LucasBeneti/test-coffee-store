@@ -7,6 +7,10 @@ export const BannerWrapper = styled.div`
   background-image: url("src/assets/banner-background.svg");
   padding: 5.75rem 10rem;
   gap: 2rem;
+
+  img {
+    object-fit: cover;
+  }
 `;
 
 export const BannerInfo = styled.div`

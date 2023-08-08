@@ -1,10 +1,14 @@
 import { HomeBanner } from "../../components/HomeBanner";
-import { CoffeeOrder } from "../../contexts/CartContext";
 import { HomeWrapper, CoffeeListWrapper, CoffeeList } from "./style";
 import { CoffeeCard } from "../../components/CoffeeCard";
 
+interface ListedCoffee {
+  id: string;
+  name: string;
+  price: number;
+}
 const HomePage = () => {
-  const existingCoffees: CoffeeOrder[] = [
+  const existingCoffees: ListedCoffee[] = [
     { id: "1", name: "Expresso Tradicional", price: 8.9 },
   ];
   return (
